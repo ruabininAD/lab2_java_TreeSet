@@ -1,6 +1,8 @@
 package org.example;
 
 
+import java.util.Iterator;
+
 public class Main{
     private static void myTest(){
         // Пример использования TreeSet
@@ -122,13 +124,39 @@ public class Main{
 
 
 
-        System.out.println((customSet));
+
     }
 
+    public static void testIterator() {
+        CustomTreeSet<Integer> treeSet = new CustomTreeSet<>();
+
+        treeSet.add(5);
+        treeSet.add(2);
+        treeSet.add(8);
+        treeSet.add(1);
+        treeSet.add(3);
+
+        System.out.println("iterator test");
+        System.out.print("foreach  print: ");
+
+        // Итерация с помощью цикла foreach
+        for (Integer element : treeSet) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+
+        // Итерация с помощью итератора
+        System.out.print("Iterator print: ");
+        Iterator<Integer> iterator = treeSet.iterator();
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+        System.out.println();
+    }
 
     public static void main(String[] args) {
         myTest();
-
+        testIterator();
         testAddElements();
         testRemoveElements();
         testIsEmpty();

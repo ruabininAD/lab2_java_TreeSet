@@ -1,8 +1,9 @@
 package org.example;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -231,5 +232,29 @@ class CustomTreeSetTest {
         }
 
 
+    }
+
+    @Test
+    void iterator() {
+        CustomTreeSet<Integer> treeSet = new CustomTreeSet<>();
+        treeSet.add(5);
+        treeSet.add(3);
+        treeSet.add(7);
+        treeSet.add(2);
+        treeSet.add(4);
+        treeSet.add(6);
+        treeSet.add(8);
+
+        Iterator<Integer> iterator = treeSet.iterator();
+
+        int[] expected = {2, 3, 4, 5, 6, 7, 8};
+        int index = 0;
+        while (iterator.hasNext()) {
+            int next = iterator.next();
+            assertEquals(expected[index], next);
+            index++;
+        }
+        Assertions.assertEquals(expected.length, index);
+        System.out.println("Equals test successful complete for iterator");
     }
 }

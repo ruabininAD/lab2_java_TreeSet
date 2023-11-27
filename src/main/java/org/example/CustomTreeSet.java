@@ -2,6 +2,9 @@ package org.example;
 
 
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Stack;
 
 class Node<T> {
     T data;
@@ -13,7 +16,7 @@ class Node<T> {
     }
 }
 
-public class CustomTreeSet<T> {
+public class CustomTreeSet<T> implements Iterable<T>{
     public Node<T> root;
     private Comparator<? super T> comparator;
     private int size ;
@@ -290,4 +293,49 @@ public class CustomTreeSet<T> {
             }
         }
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new CustomTreeSetIterator<>(root);
+    }
+
+
+    public static class CustomTreeSetIterator<T> implements Iterator<T> {
+        private Node<T> current;
+        private final Stack<Node<T>> stack;
+
+        public CustomTreeSetIterator(Node<T> root) {
+            this.current = root;
+            this.stack = new Stack<>();
+            populateStack(root);
+        }
+
+        private void populateStack(Node<T> node) {
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new IllegalStateException("No more elements to iterate");
+            }
+            Node<T> node = stack.pop();
+            populateStack(node.right);
+            return node.data;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("Remove operation is not supported");
+        }
+    }
+
 }
