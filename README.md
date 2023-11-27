@@ -23,15 +23,5 @@
 8. [x]  `boolean` isEmpty()
 
 
-
-TEST
-1. [X] `int` size()
-2. [X] `boolean` contains(Object<T>)
-3. [X] `boolean`   add(Object<T>)
-4. [X] `boolean` remove(Object<T>)
-5. [X] `void` clear()
-6. [ ] `T` first()
-7. [ ] `T` last()
-7. [ ] `SortedSet<T>` headSet(E toElement)
-8. [ ] `SortedSet<E>  `  tailSet(E fromElement)
-8. [X]  `boolean` isEmpty()
+В методе main присутствуют примеры работы с TreeSet
+Для класа CustomTreeSet написаны тесты, проверяющие эквивалентность результатов одноименных функций TreeSet из стандартной библиотеки и CustomTreeSet.
